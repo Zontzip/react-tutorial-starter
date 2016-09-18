@@ -11,16 +11,35 @@ var HelloThere = React.createClass({
     }
   },
 
+  getInitialState: function() {
+    return {
+      value: 1
+    }
+  },
+
+  // Runs only once when the component mounts
+  componentDidMount: function() {
+    // allows you to reset your state
+    this.setState({
+      value: this.state.value + 19
+    });
+  },
+
   render: function() {
     var greeting = "World";
 
     // If object is a person then return the persons name, else 'World'
     if (this.props.isPerson) {
       greeting = (<Person name={this.props.name} />)
-    } 
+    }
+
     // Returns the greeting
+    // All elements need to be wrapped for JSX
     return (
-      <h1>Hello {greeting} </h1>
+      <div>
+        <h1>Hello {greeting} </h1>
+        {this.state.value}
+      </div>
     )
   }
 });
